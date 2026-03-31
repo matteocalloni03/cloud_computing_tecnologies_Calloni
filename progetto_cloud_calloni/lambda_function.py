@@ -7,13 +7,13 @@ from datetime import datetime
 # Inizializza i client per i servizi AWS
 s3_client = boto3.client('s3')
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('ProcessedFiles') # Assicurati che il nome coincida con Fase 1
+table = dynamodb.Table('ProcessedFiles') 
 
 def lambda_handler(event, context):
-    # Log dell'evento ricevuto (utile per debug su CloudWatch)
+    # Log dell'evento ricevuto 
     print("Evento ricevuto:", json.dumps(event))
 
-    # Cicla attraverso i record (di solito è uno solo per upload)
+    # Cicla attraverso i record 
     for record in event['Records']:
         bucket_name = record['s3']['bucket']['name']
         file_key = record['s3']['object']['key']
@@ -21,9 +21,7 @@ def lambda_handler(event, context):
 
         print(f"Elaborazione file: {file_key} dal bucket: {bucket_name}")
 
-        # Simulazione di elaborazione (es. analisi del file)
-        # Qui potresti leggere il file, ma per ora salviamo i metadati
-        
+        # Simulazione di elaborazione
         # Creiamo un oggetto da salvare nel DB
         item = {
             'id': str(uuid.uuid4()),

@@ -21,7 +21,7 @@ def upload_dummy_file(file_number):
 print(f"Inizio caricamento di {NUM_FILES} file in parallelo su S3...")
 start_time = time.time()
 
-# Usa 10 thread in parallelo per stressare il sistema e generare eventi simultanei
+# 10 thread in parallelo per stressare il sistema e generare eventi simultanei
 with ThreadPoolExecutor(max_workers=10) as executor:
     for i in range(NUM_FILES):
         executor.submit(upload_dummy_file, i)

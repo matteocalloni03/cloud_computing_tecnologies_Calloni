@@ -13,7 +13,6 @@ def lambda_handler(event, context):
     # Log dell'evento ricevuto 
     print("Evento ricevuto:", json.dumps(event))
 
-    # Cicla attraverso i record 
     for record in event['Records']:
         bucket_name = record['s3']['bucket']['name']
         file_key = record['s3']['object']['key']
@@ -22,7 +21,7 @@ def lambda_handler(event, context):
         print(f"Elaborazione file: {file_key} dal bucket: {bucket_name}")
 
         # Simulazione di elaborazione
-        # Creiamo un oggetto da salvare nel DB
+        # Creo un oggetto da salvare nel DB
         item = {
             'id': str(uuid.uuid4()),
             'filename': file_key,
